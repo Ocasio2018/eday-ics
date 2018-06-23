@@ -1,0 +1,30 @@
+{
+  "name": "eday-ics",
+  "version": "1.0.0",
+  "description": " Sending voters calendar invites with election day info ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ocasio2018/eday-ics.git"
+  },
+  "keywords": [
+    "ics",
+    "ocasio",
+    "election",
+    "voting"
+  ],
+  "author": "Ben Packer <ben.paul.ryan.packer@gmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Ocasio2018/eday-ics/issues"
+  },
+  "homepage": "https://github.com/Ocasio2018/eday-ics#readme",
+  "dependencies": {
+    "ics": "^2.6.0",
+    "mailgun-js": "^0.18.1",
+    "superagent": "^3.8.3"
+  }
+}
