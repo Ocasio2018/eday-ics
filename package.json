@@ -24,7 +24,9 @@
   "homepage": "https://github.com/Ocasio2018/eday-ics#readme",
   "dependencies": {
     "ics": "^2.6.0",
+    "lodash": "^4.17.10",
     "mailgun-js": "^0.18.1",
+    "papaparse": "^4.5.0",
     "superagent": "^3.8.3"
   }
 }

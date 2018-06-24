@@ -1,55 +1,63 @@
-const ics = require("ics");
+const CONCURRENCY = 5;
+
+const fs = require("fs");
+const papaparse = require("papaparse");
+const _ = require("lodash");
+
 const api_key = process.env.MAILGUN_API_KEY;
 const domain = process.env.MAILGUN_DOMAIN;
 const mailgun = require("mailgun-js")({ apiKey: api_key, domain: domain });
 
-const EMAIL = "ben.paul.ryan.packer@gmail.com";
+const createIcs = require("./create-ics");
+const createEmail = require("./create-email");
 
-const create = () =>
+const process_line = async ([
+  first,
+  last,
+  email,
+  polling_venue,
+  polling_address
+]) => {
+  console.log(first);
+
+  const attachment = await createIcs({
+    first,
+    last,
+    email,
+    polling_venue,
+    polling_address
+  });
+
+  const data = createEmail({
+    first,
+    last,
+    email,
+    polling_venue,
+    polling_address,
+    attachment
+  });
+
+  const result = await send(data);
+  return result;
+};
+
+const send = email =>
   new Promise((resolve, reject) => {
-    const event = {
-      start: [2018, 6, 26, 9, 00],
-      duration: { hours: 11, minutes: 0 },
-      title: "Vote Vote",
-      description: "vote vote vote",
-      location: "Folsom Field, University of Colorado (finish line)",
-      url: "http://www.bolderboulder.com/",
-      geo: { lat: 40.0095, lon: 105.2669 },
-      categories: ["10k races", "Memorial Day Weekend", "Boulder CO"],
-      status: "CONFIRMED",
-      organizer: { name: "Admin", email: EMAIL },
-      attendees: [{ name: "Adam Gibbons", email: EMAIL, rsvp: true }]
-    };
-
-    ics.createEvent(event, (err, val) => {
-      return resolve(
-        new mailgun.Attachment({
-          data: new Buffer(val),
-          filename: "Voting.ics",
-          contentType: "text/calendar"
-        })
-      );
-    });
+    mailgun
+      .messages()
+      .send(email, (err, body) => (err ? reject(err) : resolve(body)));
   });
 
 const go = async () => {
-  const attachment = await create();
-  console.log(attachment);
+  const file_path = process.argv[2];
+  const file_contents = fs.readFileSync(file_path).toString();
+  const { data } = papaparse.parse(file_contents, { header: false });
 
-  const data = {
-    from: "us@ocasio2018.com",
-    to: EMAIL,
-    subject: "Hello",
-    text: "Testing some Mailgun awesomeness!",
-    attachment: [attachment]
-  };
-
-  mailgun.messages().send(data, (err, body) => {
-    if (err) {
-      console.log(err);
-    }
-    console.log(body);
-  });
+  const chunks = _.chunk(data.filter(line => line.length == 5), CONCURRENCY);
+  console.log(chunks);
+  for (let chunk of chunks) {
+    await Promise.all(chunk.map(line => process_line(line)));
+  }
 };
 
 go();
