@@ -12,6 +12,7 @@ const createIcs = require("./create-ics");
 const createEmail = require("./create-email");
 
 const process_line = async ([
+  _,
   first,
   last,
   email,
@@ -19,7 +20,7 @@ const process_line = async ([
   polling_address,
   polling_city
 ]) => {
-  console.log(first);
+  console.log(email);
 
   const attachment = await createIcs({
     first,
@@ -56,7 +57,7 @@ const go = async () => {
   const file_contents = fs.readFileSync(file_path).toString();
   const { data } = papaparse.parse(file_contents, { header: false });
 
-  const chunks = _.chunk(data.filter(line => line.length == 5), CONCURRENCY);
+  const chunks = _.chunk(data.filter(line => line.length == 7), CONCURRENCY);
   for (let chunk of chunks) {
     await Promise.all(chunk.map(line => process_line(line)));
   }

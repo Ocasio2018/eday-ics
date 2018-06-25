@@ -4,14 +4,25 @@ const api_key = process.env.MAILGUN_API_KEY;
 const domain = process.env.MAILGUN_DOMAIN;
 const mailgun = require("mailgun-js")({ apiKey: api_key, domain: domain });
 
-module.exports = ({ first, last, email, polling_venue, polling_address }) =>
+module.exports = ({
+  first,
+  last,
+  email,
+  polling_venue,
+  polling_address,
+  polling_city
+}) =>
   new Promise((resolve, reject) => {
     const event = {
-      start: [2018, 6, 26, 9, 00],
-      duration: { hours: 11, minutes: 0 },
+      start: [2018, 6, 26, 6, 30],
+      duration: { hours: 13, minutes: 30 },
       title: "Voting for Alexandria Ocasio-Cortez",
-      description: `Voting for Alexandria Ocasio-Cortez at ${polling_venue}, ${polling_address}`,
-      location: polling_venue,
+      description: polling_venue
+        ? `Bring at at least three neighbors, friends, or family members that you can take to the polls to vote for Alexandria Ocasio-Cortez. Our records say that your polling place is ${polling_venue}, ${polling_address}, ${polling_city}, and you can double-check here: https://nyc.pollsitelocator.com/search.`
+        : `Bring at at least three neighbors, friends, or family members that you can take to the polls to vote for Alexandria Ocasio-Cortez. Find your polling place here: https://nyc.pollsitelocator.com/search.`,
+      location: polling_venue
+        ? `${polling_venue}, ${polling_address}, ${polling_city}`
+        : "https://nyc.pollsitelocator.com/search",
       url: "https://nyc.pollsitelocator.com/search",
       status: "CONFIRMED",
       organizer: { name: `${first} ${last}`, email },
