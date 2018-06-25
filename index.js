@@ -16,7 +16,8 @@ const process_line = async ([
   last,
   email,
   polling_venue,
-  polling_address
+  polling_address,
+  polling_city
 ]) => {
   console.log(first);
 
@@ -25,7 +26,8 @@ const process_line = async ([
     last,
     email,
     polling_venue,
-    polling_address
+    polling_address,
+    polling_city
   });
 
   const data = createEmail({
@@ -34,6 +36,7 @@ const process_line = async ([
     email,
     polling_venue,
     polling_address,
+    polling_city,
     attachment
   });
 
@@ -54,7 +57,6 @@ const go = async () => {
   const { data } = papaparse.parse(file_contents, { header: false });
 
   const chunks = _.chunk(data.filter(line => line.length == 5), CONCURRENCY);
-  console.log(chunks);
   for (let chunk of chunks) {
     await Promise.all(chunk.map(line => process_line(line)));
   }

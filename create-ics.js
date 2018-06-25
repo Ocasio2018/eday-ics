@@ -13,11 +13,30 @@ module.exports = ({ first, last, email, polling_venue, polling_address }) =>
       description: `Voting for Alexandria Ocasio-Cortez at ${polling_venue}, ${polling_address}`,
       location: polling_venue,
       url: "https://nyc.pollsitelocator.com/search",
-      // geo: { }, TODO – lat lng for polling places
-      // categories: ["10k races", "Memorial Day Weekend", "Boulder CO"],
       status: "CONFIRMED",
       organizer: { name: `${first} ${last}`, email },
-      attendees: [{ name: `${first} ${last}`, email, rsvp: true }]
+      attendees: [
+        { name: `${first} ${last}`, email, rsvp: true },
+        { name: "Alexandria Ocasio-Cortez", email: "us@ocasio2018.com" }
+      ],
+      alarms: [
+        {
+          action: "audio",
+          trigger: [2018, 6, 26, 9, 00]
+        },
+        {
+          action: "audio",
+          trigger: [2018, 6, 26, 12, 00]
+        },
+        {
+          action: "audio",
+          trigger: [2018, 6, 26, 3, 00]
+        },
+        {
+          action: "audio",
+          trigger: [2018, 6, 26, 6, 00]
+        }
+      ]
     };
 
     ics.createEvent(event, (err, val) => {
