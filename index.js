@@ -47,9 +47,9 @@ const process_line = async ([
 
 const send = email =>
   new Promise((resolve, reject) => {
-    mailgun
-      .messages()
-      .send(email, (err, body) => (err ? reject(err) : resolve(body)));
+    mailgun.messages().send(email, (err, body) => {
+      return err ? reject(err) : resolve(body);
+    });
   });
 
 const go = async () => {

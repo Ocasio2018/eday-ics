@@ -8,30 +8,21 @@ module.exports = ({
   polling_address,
   attachment
 }) => ({
-  from: "Alexandria Ocasio-Cortez <us@ocasio2018.com>",
+  from: "Team Ocasio <us@ocasio2018.com>",
   to: email,
-  subject: `Make a plan for the primary TOMORROW`,
+  subject: `CORRECTION: Polls are open from 6AM - 9PM tomorrow`,
   // subject: `Make a plan for the primary TOMORROW!`,
   attachment: [attachment],
-  text: `Thank you for everything you’ve done. Our campaign could never have made it this far without the support and enthusiasm of activists just like you. 
+  text: `Our last email contained poll open times that were slightly off - in fact, you have MORE time to vote than we previously stated. Polls actually open at 6AM tomorrow and close at 9PM. We're sorry about the confusion. 
+  
+  We have attached an updated calendar event and voting reminder to  this email as well.
+  
+  Once again, if you need to look up your polling location, you can do so here: https://ocasio2018.com/polling-place.
 
-  Now, we’re almost to the finish line. For months, we’ve been preparing for tomorrow’s primary. After making hundreds of thousands of calls, and knocking on thousands of doors, we only have one thing left to do — make sure voters get to the polls.
-  
-  We have an aggressive plan to engage far more voters than just the average 3% of the district who normally vote in primary elections, but we need everyone to follow a few simple steps to make sure we pull it off. 
-  
-  1. Add this voting reminder attached to the email to your calendar.
-  2. Find your polling location here: https://nyc.pollsitelocator.com/search, and make a plan to vote that works with your schedule.
-  3. Find at least three neighbors, friends, or family members that you can take to the polls with you!
-  
-  With our incredible fight for social, economic and racial justice, alongside our powerful progressive platform, I know that if we give it our all, we can win this race. 
-  
-  But we’re going to need every voter — every single supporter — to do what they can to help us win this thing. 
-  
-  Can we count on you to be a voter?
-  
-  Pa’lante
-  
-  Alexandria
+  Plan a time to spend 30 minutes to vote -- Bring your family, friends and neighbors too!
+
+  Thanks for your support,
+  Team Ocasio
   `,
   html: `
     
@@ -57,34 +48,20 @@ module.exports = ({
 <p style="margin-bottom:16px;padding:0px">${first} – <br>
 </p>
 
-<p style="margin-bottom:16px;padding:0px">Thank you for everything you’ve done. Our campaign could never have made it this far without the support and enthusiasm of activists just like you. </p>
+<p style="margin-bottom:16px;padding:0px">Our last email contained poll open times that were slightly off - in fact, you have MORE time to vote than we previously stated. Polls actually open at 6AM tomorrow and close at 9PM. We're sorry about the confusion.</p>
 
-<p style="margin-bottom:16px;padding:0px">Now, we’re almost to the finish line. For months, we’ve been preparing for tomorrow’s primary. After making hundreds of thousands of calls, and knocking on thousands of doors, we only have one thing left to do — make sure voters get to the polls.</p>
+<p style="margin-bottom:16px;padding:0px">We have attached an updated calendar event and voting reminder to  this email as well.</p>
 
-<p style="margin-bottom:16px;padding:0px">We have an aggressive plan to engage far more voters than just the average 3% of the district who normally vote in primary elections, but we need everyone to follow a few simple steps to make sure we pull it off. </p>
+<p style="margin-bottom:16px;padding:0px">Once again, if you need to look up your polling location, you can do so here: https://ocasio2018.com/polling-place.</p>
 
-<ol>
-<li><p style="margin-bottom:16px;padding:0px">Add this voting reminder attached to the email to your calendar.</p>
-</li>
+<p style="margin-bottom:16px;padding:0px">
+Plan a time to spend 30 minutes to vote -- Bring your family, friends and neighbors too!
+</p>
 
-<li><p style="margin-bottom:16px;padding:0px"><a style="color:#0062ac" href="https://nyc.pollsitelocator.com/search">Find your polling location here</a>, and make a plan to vote that works with your schedule</p>
-</li>
+<p style="margin-bottom:16px;padding:0px"> Thanks for your support, </p>
 
-<li><p style="margin-bottom:16px;padding:0px">Find at least three neighbors, friends, or family members that you can take to the polls with you!</p>
-</li>
+<p style="margin-bottom:16px;padding:0px"> Team Ocasio </p>
 
-</ol>
-<p style="margin-bottom:16px;padding:0px">Find your polling location here: https://ocasio2018.com/polling-place </p>
-
-<p style="margin-bottom:16px;padding:0px">With our incredible fight for social, economic and racial justice, alongside our powerful progressive platform, I know that if we give it our all, we can win this race. </p>
-
-<p style="margin-bottom:16px;padding:0px">But we’re going to need every voter — every single supporter — to do what they can to help us win this thing. </p>
-
-<p style="margin-bottom:16px;padding:0px">Can we count on you to be a voter?</p>
-
-<p style="margin-bottom:16px;padding:0px">Pa’lante</p>
-
-<p style="margin-bottom:16px;padding:0px">Alexandria</p>
 
 <div style="font-family:&quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Lucida Grande&quot;, sans-serif;font-weight:400;font-size:17px;line-height:140%;text-align:left;color:#3A3A3C;text-align: left; margin-top: 40px; padding-top: 10px; border-top: 2px solid #ececec; max-width: 600px; margin-left: auto; margin-right: auto; font-weight: 400; font-size: 13px; line-height: 120%;" class="footer">
 <table style="width: 200px; max-width: 325px; height: 25px; margin: 0 auto; padding-bottom: 10px; font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;" cellspacing="0" cellpadding="0&quot;">

@@ -14,8 +14,8 @@ module.exports = ({
 }) =>
   new Promise((resolve, reject) => {
     const event = {
-      start: [2018, 6, 26, 6, 30],
-      duration: { hours: 13, minutes: 30 },
+      start: [2018, 6, 26, 6, 00],
+      duration: { hours: 15, minutes: 00 },
       title: "Voting for Alexandria Ocasio-Cortez",
       description: polling_venue
         ? `Bring at at least three neighbors, friends, or family members that you can take to the polls to vote for Alexandria Ocasio-Cortez. Our records say that your polling place is ${polling_venue}, ${polling_address}, ${polling_city}, and you can double-check here: https://nyc.pollsitelocator.com/search.`
